@@ -27,6 +27,7 @@ public class Coche {
 
     private boolean disponible = true;
 
+    @Column(nullable=false)
     private Long localId;
 
     public Long getId() {
