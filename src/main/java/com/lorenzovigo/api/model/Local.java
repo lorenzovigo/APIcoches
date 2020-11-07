@@ -3,12 +3,11 @@ package com.lorenzovigo.api.model;
 import javax.persistence.*;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"direccion"})})
 public class Local {
 
     private @Id @GeneratedValue Long id;
 
-    @Column(name="direccion", nullable=false)
+    @Column(nullable=false, unique=true)
     private String direccion;
 
     public Long getId() {
