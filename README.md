@@ -107,7 +107,7 @@ Incluimos un coche nuevo en la base de datos. Esta acción requiere un Body en f
   "disponible": <disponible>,
   "localId": <localId>
  }
- 
+ ``` 
 <marca> y <matricula> serán valores de texto. <coste> y <precio> serán valores numéricos sin el símbolo de euro. <fechaVenta> y <fechaIngreso> serán fechas en el formato "yyyy-MM-dd hh:mm:ss". <vendido> y <disponible> serán booleanos (false o true). <localId> será el identificador de uno de los concesionarios existentes.
 
 Solo las filas de marca, coste (por defecto, 0), fecha ingreso (por defecto añadirá la fecha actual) y localId son obligatorias.
