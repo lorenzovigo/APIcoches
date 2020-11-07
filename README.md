@@ -16,7 +16,7 @@ Nos dirigimos con la terminal a la carpeta del código y ejecutamos el siguiente
 mvn spring-boot:run
 ```
 
-Para este último comando **será necesario tener instalado maven**. Esto se puede hacer mediante
+Para este último comando **será necesario tener instalado maven**. Esto se puede hacer mediante:
 
 ```
 sudo apt install maven
@@ -28,7 +28,7 @@ Para utilizar nuestra API es necesario hacerlo desde **Insomnia** o **Postman**.
 
 ## Llamadas disponibles:
 
-*Observaciones:* Por defecto la API se ejecuta en localhost:8080, en caso contrario hemos de cambiar la dirección en las llamadas siguientes.
+*Observaciones:* Por defecto la API se ejecuta en localhost:8080 . En caso contrario, hemos de cambiar la dirección en las llamadas siguientes.
 
 **GET localhost:8080/concesionarios**
 
@@ -44,13 +44,13 @@ Requiere un body Json de este tipo:
   "direccion": "<valor>"
 }
 ```
-, donde <valor> lo cambiariemos por la dirección del concesionario, la cual debe ser única en toda la Base de Datos.
+, donde <valor> lo cambiaremos por la dirección del concesionario, la cual debe ser única en toda la Base de Datos.
 
 **GET localhost:8080/concesionarios/{id}**
 
 Devuelve la información de un concesario en concreto, el cual tenga un identificador igual a {id}, donde {id} es un número.
 
-*Observaciones:* No está disponible la opción de hacer una llamada DELETE ya que no tiene sentido a la hora de crear el informe de beneficios de la cadena. Aunque el concesionario cierra, sus movimientos siguen siendo relevantes. Además, como decisión de diseño, hemos optado por añadir un identificador numérico a los concesionarios, para así facilitar las referencias a la hora de asignar un concesionario a cada coche.
+*Observaciones:* No está disponible la opción de hacer una llamada DELETE ya que no tiene sentido a la hora de crear el informe de beneficios de la cadena. Incluso si el concesionario cerrar, sus movimientos seguirán siendo relevantes. Además, como decisión de diseño, hemos optado por añadir un identificador numérico a los concesionarios, para así facilitar las referencias a la hora de asignar un concesionario a cada coche.
 
 **GET localhost:8080/coches?sort=**
 
@@ -108,11 +108,13 @@ Incluimos un coche nuevo en la base de datos. Esta acción requiere un Body en f
   "localId": <localId>
  }
  ``` 
-<marca> y <matricula> serán valores de texto. <coste> y <precio> serán valores numéricos sin el símbolo de euro. <fechaVenta> y <fechaIngreso> serán fechas en el formato "yyyy-MM-dd hh:mm:ss". <vendido> y <disponible> serán booleanos (false o true). <localId> será el identificador de uno de los concesionarios existentes.
+`<marca>` y `<matricula>` serán valores de texto. `<coste>` y `<precio>` serán valores numéricos sin el símbolo de euro. `<fechaVenta>` y `<fechaIngreso>` serán fechas en el formato "yyyy-MM-dd hh:mm:ss". `<vendido>` y `<disponible>` serán booleanos (false o true). `<localId>` será el identificador de uno de los concesionarios existentes.
 
-Solo las filas de marca, coste (por defecto, 0), fecha ingreso (por defecto añadirá la fecha actual) y localId son obligatorias.
+Solo las filas de marca y localId son obligatorias.
 
-Además, hemos de cumplir con las siguientes restricciones: localId ha de ser un identificador de un concesionario de la base de datos, rellenaremos los valores de precio y fechaVenta si y solo si el coche se ha vendido.
+Si no se pasan valores de coste y de fecha de ingreso, estos tendrán por defecto como valor 0 y la fecha actual respectivamente.
+
+Además, hemos de cumplir con las siguientes restricciones: localId ha de ser un identificador de un concesionario de la base de datos. Se rellenan los valores de precio y fechaVenta si y solo si el coche se ha vendido.
 
 **GET localhost:8080/beneficios**
 
