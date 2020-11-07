@@ -24,7 +24,9 @@ sudo apt install maven
 
 ## Utilizar la API
 
-Para utilizar nuestra API es necesario hacerlo desde **Insomnia** o **Postman**. Recomendamos la primera opción. Haremos las llamadas siempre a localhost:8080. Podéis consultar la documentación de cada uno de los softwares para consultar acerca de su funcionamiento.
+Para utilizar nuestra API es necesario hacerlo desde **Insomnia** o **Postman**. Recomendamos la primera opción. Además, en la carpeta insomnia se puede encontrar un workspace exportado de Insomnia con las llamadas disponibles. Para utilizar estas llamadas habrá que completar formularios Json, cambiar variables entre llaves ({ejemplo}) por su valor y añadir valores tras = para que funcionen correctamente.
+
+Haremos las llamadas siempre a localhost:8080. Podéis consultar la documentación de cada uno de los softwares para consultar acerca de su funcionamiento.
 
 ## Llamadas disponibles:
 
