@@ -35,13 +35,13 @@ public class CocheController {
     }
 
     @GetMapping("/coches")
-    List<Coche> all(@RequestParam String sort) {
+    List<Coche> all(@RequestParam(value = "sort", required = false, defaultValue = "") String sort) {
         List<Coche> list = repository.findAll();
         return sortList(list, sort);
     }
 
     @GetMapping("/concesionarios/{id}/coches")
-    List<Coche> allByLocal(@PathVariable Long id, @RequestParam String sort) {
+    List<Coche> allByLocal(@PathVariable Long id, @RequestParam(value = "sort", required = false, defaultValue = "") String sort) {
         Local local = localRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("concesionario", "id", id.toString()));
         List<Coche> list = repository.findAll().stream().filter(car -> car.getLocalId() == id).collect(Collectors.toList());

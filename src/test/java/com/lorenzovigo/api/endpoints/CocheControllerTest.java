@@ -27,7 +27,7 @@ public class CocheControllerTest {
 
     @Test
     public void getReturnsOkStatus() throws Exception {
-        this.mockMvc.perform(get("/coches?sort=")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/coches")).andExpect(status().isOk());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class CocheControllerTest {
 
         int id = JsonPath.read(result.getResponse().getContentAsString(), "$.id");
 
-        this.mockMvc.perform(get("/concesionarios/" + id + "/coches?sort=")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/concesionarios/" + id + "/coches")).andExpect(status().isOk());
     }
 
     @Test
