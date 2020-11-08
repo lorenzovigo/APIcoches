@@ -121,33 +121,34 @@ public class CocheController {
         Local local = localRepository.findById(newCoche.getLocalId())
                 .orElseThrow(() -> new NotFoundException("concesionario", "id", String.valueOf(newCoche.getLocalId())));
 
+        if (newCoche.getFechaIngreso() == null) {
+            LocalDateTime date = LocalDateTime.now();
+            newCoche.setFechaIngreso(date.format(formatter));
+        }
+
         try{
             checkDateFormat(newCoche.getFechaIngreso());
         } catch (ParseException e) {
             throw new InvalidDateFormatException(newCoche.getFechaIngreso());
         }
 
-        try{
-            checkDateFormat(newCoche.getFechaVenta());
-        } catch (ParseException e) {
-            throw new InvalidDateFormatException(newCoche.getFechaVenta());
+        if (newCoche.isVendido()) {
+            if (newCoche.getFechaVenta() == null) throw new InvalidActionException("ya que no podemos añadir un coche vendido sin su fecha de venta.");
+            if (newCoche.getCoste() < 0) throw new InvalidValueException("coste", valueOf(newCoche.getCoste()));
+
+            try {
+                checkDateFormat(newCoche.getFechaVenta());
+            } catch (ParseException e) {
+                throw new InvalidDateFormatException(newCoche.getFechaVenta());
+            }
         }
 
-        if (newCoche.getPrecio() < 0) throw new InvalidValueException("precio", valueOf(newCoche.getPrecio()));
-        if (newCoche.getCoste() < 0) throw new InvalidValueException("coste", valueOf(newCoche.getCoste()));
-
-        if (newCoche.getFechaIngreso() == null) {
-            LocalDateTime date = LocalDateTime.now();
-            newCoche.setFechaIngreso(date.format(formatter));
-        }
-
-        if (newCoche.isVendido() && newCoche.getFechaVenta() == null) {
-            throw new InvalidActionException("ya que no podemos añadir un coche vendido sin su fecha de venta.");
-        }
         if (!newCoche.isVendido() && newCoche.getFechaVenta() != null) {
             throw new InvalidActionException("ya que no podemos añadir fecha de venta a un coche no vendido.");
 
         }
+
+        if (newCoche.getPrecio() < 0) throw new InvalidValueException("precio", valueOf(newCoche.getPrecio()));
 
         return repository.save(newCoche);
     }
