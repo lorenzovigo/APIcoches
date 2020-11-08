@@ -24,13 +24,13 @@ sudo apt install maven
 
 ## Utilizar la API
 
-Para utilizar nuestra API es necesario hacerlo desde **Insomnia** o **Postman**. Recomendamos la primera opción. Además, en la carpeta insomnia se puede encontrar un workspace exportado de Insomnia con las llamadas disponibles. Para utilizar estas llamadas habrá que completar formularios Json, cambiar variables entre llaves ({ejemplo}) por su valor y añadir valores tras = para que funcionen correctamente.
+Para utilizar nuestra API es necesario hacerlo desde **Insomnia** o **Postman**. Recomendamos la primera opción. Además, en la carpeta `insomnia` se puede encontrar un workspace exportado de Insomnia con las llamadas disponibles. Para utilizar estas llamadas habrá que completar formularios Json, cambiar variables entre llaves ({ejemplo}) por su valor y añadir valores tras = para que funcionen correctamente.
 
-Haremos las llamadas siempre a localhost:8080. Podéis consultar la documentación de cada uno de los softwares para consultar acerca de su funcionamiento.
+Haremos las llamadas siempre a `localhost:8080`. Podéis consultar la documentación de cada uno de los softwares para consultar acerca de su funcionamiento.
 
 ## Llamadas disponibles:
 
-*Observaciones:* Por defecto la API se ejecuta en localhost:8080 . En caso contrario, hemos de cambiar la dirección en las llamadas siguientes.
+*Observaciones:* Por defecto la API se ejecuta en `localhost:8080`. En caso contrario, hemos de cambiar la dirección en las llamadas siguientes.
 
 **GET localhost:8080/concesionarios**
 
@@ -46,7 +46,7 @@ Requiere un body Json de este tipo:
   "direccion": "<valor>"
 }
 ```
-, donde <valor> lo cambiaremos por la dirección del concesionario, la cual debe ser única en toda la Base de Datos.
+, donde `<valor>` lo cambiaremos por la dirección del concesionario, la cual debe ser única en toda la Base de Datos.
 
 **GET localhost:8080/concesionarios/{id}**
 
@@ -54,15 +54,15 @@ Devuelve la información de un concesario en concreto, el cual tenga un identifi
 
 *Observaciones:* No está disponible la opción de hacer una llamada DELETE ya que no tiene sentido a la hora de crear el informe de beneficios de la cadena. Incluso si el concesionario cerrar, sus movimientos seguirán siendo relevantes. Además, como decisión de diseño, hemos optado por añadir un identificador numérico a los concesionarios, para así facilitar las referencias a la hora de asignar un concesionario a cada coche.
 
-**GET localhost:8080/coches?sort=**
+**GET localhost:8080/coches**
 
 Devuelve una lista con todos los coches guardados en la base de datos.
 
-**GET localhost:8080/concesionarios/{id}/coches?sort=**
+**GET localhost:8080/concesionarios/{id}/coches**
 
 Devuelve una lista con todos los coches asignados a un concesionario con identificador {id}, donde {id} es un número.
 
-*Observaciones:* En las dos últimas llamadas podemos añadir opciones para ordenar la lista. Son las siguientes:
+*Observaciones:* En las dos últimas llamadas podemos añadir el parámetro `sort`, que nos da opciones para ordenar la lista. Son las siguientes:
 
 IA: para ordenar los coches por fecha de ingreso, en orden ascendente
 
@@ -72,7 +72,7 @@ VA: para ordenar los coches por fecha de venta, en orden ascendente
 
 VD: para ordenar los coches por fecha de venta, en orden descendente
 
-*Ejemplo: localhost:8080/coches?sort=IA*
+*Ejemplo de uso: localhost:8080/coches?sort=IA*
 
 **GET localhost:8080/coches/{id}**
 
